@@ -1,2 +1,41 @@
 ---
-# tasks file for postgresql
+- name: postgresql | add repository
+  apt_repository: repo='ppa:pitti/postgresql'
+  sudo: true
+
+- name: postgresql | ensure apt cache is up to date
+  apt: update_cache=yes
+  sudo: true
+
+- name: postgresql | ensure packages are installed
+  apt: pkg={{ item }}
+  with_items:
+    - postgresql-{{ postgresql.version }}
+    - postgresql-client-{{ postgresql.version }}
+    - postgresql-contrib-{{ postgresql.version }}
+    - postgresql-server-dev-{{ postgresql.version }}
+    - libpq-dev
+    - python-psycopg2
+  register: db_setup
+  tags:
+    - postgres
+
+- name: postgresql | setup postgres cluster to default to utf8 | stop cluster
+  # if the dbs haven't been created yet, we want to destroy the whole db
+  # cluster and recreate it with proper utf8 support.
+  sudo: yes
+  sudo_user: postgres
+  shell: pg_dropcluster --stop {{ postgresql.version }} main
+  when: db_setup.changed # only do this if the dbs haven't been created yet
+  tags:
+    - postgres
+
+- name: postgresql | setup postgres cluster to default to utf8 | start cluster
+  # if the dbs haven't been created yet, we want to destroy the whole db
+  # cluster and recreate it with proper utf8 support. From http://ph.ly/pg
+  sudo: yes
+  sudo_user: postgres
+  shell: pg_createcluster --start -e {{ postgresql.encoding }} {{ postgresql.version }} main
+  when: db_setup.changed # only do this if the dbs haven't been created yet
+  tags:
+    - postgres

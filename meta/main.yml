@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: your name
+  author: Andrew Kumanyaev
   description: 
-  company: your company (optional)
+  company: Undev
   license: license (GPLv2, CC-BY, etc)
   min_ansible_version: 1.2
   #
@@ -52,14 +52,14 @@ galaxy_info:
   #  - 9.1
   #  - 9.1
   #  - 9.2
-  #- name: Ubuntu
-  #  versions:
+  - name: Ubuntu
+    versions:
+      - precise
   #  - all
   #  - lucid
   #  - maverick
   #  - natty
   #  - oneiric
-  #  - precise
   #  - quantal
   #  - raring
   #  - saucy
@@ -88,15 +88,15 @@ galaxy_info:
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
   #
-  #categories:
+  categories:
   #- cloud
   #- cloud:ec2
   #- cloud:gce
   #- cloud:rax
-  #- database
+  - database
   #- database:nosql
-  #- database:sql
-  #- development
+  - database:sql
+  - development
   #- monitoring
   #- networking
   #- packaging
