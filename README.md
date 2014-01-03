@@ -1,33 +1,62 @@
 Role Name
 ========
 
-A brief description of the role goes here.
+Role for base setup and configure postgresql server and client
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by the ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Defaults:
+
+    postgresql:
+      version: 9.2
+      encoding: 'UTF-8'
+      locale: 'en_US.UTF-8'
+      recreate_cluster: yes
+      configuration:
+        pg_hba:
+          default:
+            - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
+            - { type: local, database: all, user: all,      address: '',             method: trust, comment: '"local" is for Unix domain socket connections only' }
+            - { type: local, database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
+            - { type: local, database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
+          passwd_hosts: []
+          trust_hosts: []
+          custom: []
+
+        server:
+          # postgresql.conf settings
+          listen_addresses: localhost
+          listen_port: 5432
+          max_connections: 50
+          superuser_reserved_connections: 3
+          unix_socket_directory: '/var/run/postgresql'
+          unix_socket_group: ''
+          unix_socket_permissions: 0777
+
+          shared_buffers: 0
+          effective_cache_size: 0
+          work_mem: '8MB'
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+zzet.common
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
-
-
+[Andrew Kumanyaev](https://github.com/zzet)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
