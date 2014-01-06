@@ -13,36 +13,33 @@ Role Variables
 
 Defaults:
 
-    postgresql:
-      version: 9.2
-      encoding: 'UTF-8'
-      locale: 'en_US.UTF-8'
-      recreate_cluster: yes
-      configuration:
-        pg_hba:
-          default:
-            - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
-            - { type: local, database: all, user: all,      address: '',             method: trust, comment: '"local" is for Unix domain socket connections only' }
-            - { type: local, database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
-            - { type: local, database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
-          passwd_hosts: []
-          trust_hosts: []
-          custom: []
+    # default vars file for postgresql
+    postgresql_version: 9.2
+    postgresql_encoding: 'UTF-8'
+    postgresql_locale: 'en_US.UTF-8'
+    postgresql_recreate_cluster: yes
+    # pg_hba.conf
+    postgresql_configuration_pg_hba_default:
+      - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
+      - { type: local, database: all, user: all,      address: '',             method: trust, comment: '"local" is for Unix domain socket connections only' }
+      - { type: local, database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
+      - { type: local, database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
+    postgresql_configuration_pg_hba_passwd_hosts: []
+    postgresql_configuration_pg_hba_trust_hosts: []
+    postgresql_configuration_pg_hba_custom: []
 
-        server:
-          # postgresql.conf settings
-          listen_addresses: localhost
-          listen_port: 5432
-          max_connections: 50
-          superuser_reserved_connections: 3
-          unix_socket_directory: '/var/run/postgresql'
-          unix_socket_group: ''
-          unix_socket_permissions: 0777
+    # postgresql.conf settings
+    postgresql_configuration_server_listen_addresses: localhost
+    postgresql_configuration_server_listen_port: 5432
+    postgresql_configuration_server_max_connections: 50
+    postgresql_configuration_server_superuser_reserved_connections: 3
+    postgresql_configuration_server_unix_socket_directory: '/var/run/postgresql'
+    postgresql_configuration_server_unix_socket_group: ''
+    postgresql_configuration_server_unix_socket_permissions: 0777
 
-          shared_buffers: 0
-          effective_cache_size: 0
-          work_mem: '8MB'
-
+    postgresql_configuration_server_shared_buffers: 0
+    postgresql_configuration_server_effective_cache_size: 0
+    postgresql_configuration_server_work_mem: '8MB'
 
 Dependencies
 ------------
