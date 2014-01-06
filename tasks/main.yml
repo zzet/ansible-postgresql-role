@@ -17,6 +17,7 @@
     - libpq-dev
     - python-psycopg2
   register: db_setup
+  sudo: true
   tags:
     - postgres
 
@@ -43,11 +44,13 @@
 - name: Update pg_hba.conf file
   template: src=pg_hba.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf owner=postgres group=postgres mode=0640
   notify: restart postgresql
+  sudo: true
   tags:
     - postgres
 
 - name: Update postgres.conf file
   template: src=master.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf owner=postgres group=postgres mode=0644
+  sudo: true
   notify: restart postgresql
   tags:
     - postgres
