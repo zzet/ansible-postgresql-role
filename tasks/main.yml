@@ -7,8 +7,13 @@
   tags:
     - postgres
 
-- name: Include OS specific tasks
-  include: "{{ ansible_distribution }}.yml"
+- name: Include Ubuntu tasks
+  include: ubuntu.yml
+  when: not "{{ ansible_distribution }}" != "Ubuntu"
+
+- name: Include Debian tasks
+  include: debian.yml
+  when: not "{{ ansible_distribution }}" != "Debian"
 
 - name: Ensure apt cache is up to date
   apt: update_cache=yes

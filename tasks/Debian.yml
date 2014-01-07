@@ -1,5 +1,5 @@
 ---
-- name: add postgres repositories
+- name: debian | add postgres repositories
   sudo: true
   lineinfile:
     dest=/etc/apt/sources.list
@@ -7,6 +7,6 @@
     backup=yes
     insertafter=EOF
 
-- name: pg keys
+- name: debian | add pg keys
   shell: curl -O "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add -
   sudo: true
