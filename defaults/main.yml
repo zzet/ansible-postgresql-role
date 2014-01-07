@@ -27,6 +27,6 @@ postgresql_configuration_server_shared_buffers: 0
 postgresql_configuration_server_effective_cache_size: 0
 postgresql_configuration_server_work_mem: '8MB'
 
-postgres_proxy_env:
+postgresql_proxy_env:
   LC_ALL: "{{ postgresql_locale }}"
   LC_LCTYPE: "{{ postgresql_locale }}"
