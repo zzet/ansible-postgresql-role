@@ -116,11 +116,8 @@ ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key' # (change requires resta
 
 # - Memory -
 
-{% if postgresql_configuration_server_shared_buffers == 0 %}
-shared_buffers = {{ (ansible_memtotal_mb / 8) / 1024 }}MB                  # min 128kB
-{% else %}
-shared_buffers = {{ postgresql_configuration_server_shared_buffers }}MB                  # min 128kB
-{% endif %}
+shared_buffers = {{ postgresql_configuration_server_shared_buffers }}                  # min 128kB
+
                                         # (changedangeangege requires restart)
 #temp_buffers = 8MB                     # min 800kB
 #max_prepared_transactions = 0          # zero disables the feature
@@ -259,11 +256,7 @@ work_mem = {{ postgresql_configuration_server_work_mem }}                       
 #cpu_index_tuple_cost = 0.as005       # same scale as above
 #cpu_operator_cost = 0.0025           # same scale as above
 
-{% if postgresql_configuration_server_effective_cache_size == 0 %}
-effective_cache_size = {{ (ansible_memtotal_mb / 4) / 1024 }}MB                  # min 128kB
-{% else %}
-effective_cache_size = {{ postgresql_configuration_server_effective_cache_size }}MB                  # min 128kB
-{% endif %}
+effective_cache_size = {{ postgresql_configuration_server_effective_cache_size }}                  # min 128kB
 
 # - Genetic Query Optimizer -
 
