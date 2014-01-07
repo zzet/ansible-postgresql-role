@@ -37,8 +37,8 @@ Defaults:
     postgresql_configuration_server_unix_socket_group: ''
     postgresql_configuration_server_unix_socket_permissions: 0777
 
-    postgresql_configuration_server_shared_buffers: 0
-    postgresql_configuration_server_effective_cache_size: 0
+    postgresql_configuration_server_shared_buffers: 128kB
+    postgresql_configuration_server_effective_cache_size: 128kB
     postgresql_configuration_server_work_mem: '8MB'
 
 Dependencies
