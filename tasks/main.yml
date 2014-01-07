@@ -1,5 +1,11 @@
 ---
-- debug: msg="{{ ansible_os_family }}"
+- name: Ensure comon packages are installed
+  apt: pkg={{ item }}
+  with_items:
+    - python-pycurl
+  sudo: true
+  tags:
+    - postgres
 
 - name: Add repository
   apt_repository: repo='ppa:pitti/postgresql'
@@ -18,7 +24,6 @@
     - postgresql-server-dev-{{ postgresql_version }}
     - libpq-dev
     - python-psycopg2
-    - python-pycurl
   register: db_setup
   environment: postgresql_proxy_env
   sudo: true
