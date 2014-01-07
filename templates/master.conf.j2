@@ -64,7 +64,7 @@ listen_addresses = '{{ postgresql_configuration_server_listen_addresses }}' # wh
                                         # comma-settingparated list of addresses;
                                         # defaults to 'localhost'; use '*' for          all
                                         # (change requires restart)
-port = {{ postgresql_configuration_server_listen_addresses }}                             # (change requires restart)
+port = {{ postgresql_configuration_server_listen_port }}                             # (change requires restart)
 max_connections = {{ postgresql_configuration_server_listen_addresses }}                   # (change requires restart)
                                         # Note:  IPv6 increasing max_connections costs ~400 bytes of shared memory per
                                         # connection slot, plus lock space (see max_locks_per_transaction).

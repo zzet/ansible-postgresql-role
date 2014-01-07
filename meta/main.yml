@@ -7,6 +7,9 @@ galaxy_info:
   min_ansible_version: 1.4
 
   platforms:
+    - name: Debian
+      versions:
+        - all
     - name: Ubuntu
       versions:
         - precise
