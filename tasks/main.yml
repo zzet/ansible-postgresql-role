@@ -18,6 +18,7 @@
     - postgresql-server-dev-{{ postgresql_version }}
     - libpq-dev
     - python-psycopg2
+    - python-pycurl
   register: db_setup
   environment: postgresql_proxy_env
   sudo: true
