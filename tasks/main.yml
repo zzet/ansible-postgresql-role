@@ -22,14 +22,14 @@
 - name: Ensure packages are installed
   apt: pkg={{ item }}
   with_items:
-    - postgresql-{{ postgresql_version }}
-    - postgresql-client-{{ postgresql_version }}
-    - postgresql-contrib-{{ postgresql_version }}
-    - postgresql-server-dev-{{ postgresql_version }}
+    - postgresql-{{ pg_version }}
+    - postgresql-client-{{ pg_version }}
+    - postgresql-contrib-{{ pg_version }}
+    - postgresql-server-dev-{{ pg_version }}
     - libpq-dev
     - python-psycopg2
   register: db_setup
-  environment: postgresql_proxy_env
+  environment: pg_proxy_env
   sudo: true
   tags:
     - postgres
@@ -39,8 +39,8 @@
   # cluster and recreate it with proper utf8 support.
   sudo: yes
   sudo_user: postgres
-  shell: pg_dropcluster --stop {{ postgresql_version }} main
-  when: db_setup.changed and postgresql_recreate_cluster # only do this if the dbs haven't been created yet
+  shell: pg_dropcluster --stop {{ pg_version }} main
+  when: db_setup.changed and pg_recreate_cluster # only do this if the dbs haven't been created yet
   tags:
     - postgres
 
@@ -49,20 +49,20 @@
   # cluster and recreate it with proper utf8 support. From http://ph.ly/pg
   sudo: yes
   sudo_user: postgres
-  shell: pg_createcluster --start -e {{ postgresql_encoding }} {{ postgresql_version }} main
-  when: db_setup.changed and postgresql_recreate_cluster # only do this if the dbs haven't been created yet
+  shell: pg_createcluster --start -e {{ pg_encoding }} {{ pg_version }} main
+  when: db_setup.changed and pg_recreate_cluster # only do this if the dbs haven't been created yet
   tags:
     - postgres
 
 - name: Update pg_hba.conf file
-  template: src=pg_hba.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf owner=postgres group=postgres mode=0640
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/{{ pg_version }}/main/pg_hba.conf owner=postgres group=postgres mode=0640
   notify: restart postgresql
   sudo: true
   tags:
     - postgres
 
 - name: Update postgres.conf file
-  template: src=master.conf.j2 dest=/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf owner=postgres group=postgres mode=0644
+  template: src=master.conf.j2 dest=/etc/postgresql/{{ pg_version }}/main/postgresql.conf owner=postgres group=postgres mode=0644
   sudo: true
   notify: restart postgresql
   tags:
