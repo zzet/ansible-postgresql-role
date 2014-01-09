@@ -45,7 +45,7 @@ Defaults:
 Dependencies
 ------------
 
-zzet.common
+None
 
 License
 -------
