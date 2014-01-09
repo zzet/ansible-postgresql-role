@@ -17,13 +17,13 @@ Defaults:
     postgresql_version: 9.2
     postgresql_encoding: 'UTF-8'
     postgresql_locale: 'en_US.UTF-8'
-    postgresql_recreate_cluster: yes
+    postgresql_recreate_cluster: false
     # pg_hba.conf
     postgresql_configuration_pg_hba_default:
       - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
       - { type: local, database: all, user: all,      address: '',             method: trust, comment: '"local" is for Unix domain socket connections only' }
-      - { type: local, database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
-      - { type: local, database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
+      - { type: host,  database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
+      - { type: host,  database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
     postgresql_configuration_pg_hba_passwd_hosts: []
     postgresql_configuration_pg_hba_trust_hosts: []
     postgresql_configuration_pg_hba_custom: []
@@ -35,11 +35,12 @@ Defaults:
     postgresql_configuration_server_superuser_reserved_connections: 3
     postgresql_configuration_server_unix_socket_directory: '/var/run/postgresql'
     postgresql_configuration_server_unix_socket_group: ''
-    postgresql_configuration_server_unix_socket_permissions: 0777
+    postgresql_configuration_server_unix_socket_permissions: '0777'
 
-    postgresql_configuration_server_shared_buffers: 128kB
-    postgresql_configuration_server_effective_cache_size: 128kB
+    postgresql_configuration_server_shared_buffers: '128kB'
+    postgresql_configuration_server_effective_cache_size: '128kB'
     postgresql_configuration_server_work_mem: '8MB'
+
 
 Dependencies
 ------------
