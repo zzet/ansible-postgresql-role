@@ -1,7 +1,8 @@
 Role Name
 ========
 
-Role for base setup and configure postgresql server and client
+Role for base setup and configure postgresql server and client with
+trust authentication be default
 
 Requirements
 ------------
@@ -21,10 +22,31 @@ Defaults:
 
     # pg_hba.conf
     pg_cfg_pg_hba_default:
-      - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
-      - { type: local, database: all, user: all,      address: '',             method: trust, comment: '"local" is for Unix domain socket connections only' }
-      - { type: host,  database: all, user: all,      address: '127.0.0.1/32', method: trust, comment: 'IPv4 local connections:' }
-      - { type: host,  database: all, user: all,      address: '::1/128',      method: trust, comment: 'IPv6 local connections:' }
+      - { type: local,
+          database: all,
+          user: postgres,
+          address: '',
+          method: trust,
+          comment: '' }
+      - { type: local,
+          database: all,
+          user: all,
+          address: '',
+          method: trust,
+          comment: '"local" is for Unix domain socket connections only' }
+      - { type: host,
+          database: all,
+          user: all,
+          address: '127.0.0.1/32',
+          method: trust,
+          comment: 'IPv4 local connections:' }
+      - { type: host,
+          database: all,
+          user: all,
+          address: '::1/128',
+          method: trust,
+          comment: 'IPv6 local connections:' }
+
     pg_cfg_pg_hba_passwd_hosts: []
     pg_cfg_pg_hba_trust_hosts: []
     pg_cfg_pg_hba_custom: []
@@ -50,6 +72,12 @@ License
 -------
 
 MIT
+
+ToDo
+-------
+
+ - Extensions
+ - More config variables
 
 Author Information
 ------------------
