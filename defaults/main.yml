@@ -31,6 +31,6 @@ pg_cfg_srv_shared_buffers: '128kB'
 pg_cfg_srv_effective_cache_size: '128kB'
 pg_cfg_srv_work_mem: '8MB'
 
-postgres_proxy_env:
+pg_proxy_env:
   LC_ALL: "{{ pg_locale }}"
   LC_LCTYPE: "{{ pg_locale }}"
