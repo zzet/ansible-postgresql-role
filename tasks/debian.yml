@@ -6,7 +6,9 @@
     line="deb http://apt.postgresql.org/pub/repos/apt/ squeeze-pgdg main"
     backup=yes
     insertafter=EOF
+  when: pg_repo == 'postgresql.org'
 
 - name: debian | add pg keys
   shell: curl -sSL "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | apt-key add -
   sudo: true
+  when: pg_repo == 'postgresql.org'

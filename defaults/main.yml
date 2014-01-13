@@ -4,6 +4,8 @@ pg_version: 9.2
 pg_encoding: 'UTF-8'
 pg_locale: 'en_US.UTF-8'
 pg_recreate_cluster: false
+pg_repo: 'postgresql.org' # unset to use distribution repo
+
 # pg_hba.conf
 pg_cfg_pg_hba_default:
   - { type: local, database: all, user: postgres, address: '',             method: trust, comment: '' }
