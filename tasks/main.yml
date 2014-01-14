@@ -66,3 +66,8 @@
   notify: restart postgresql
   tags:
     - postgres
+
+- name: ensure postgresql server is running
+  service: name=postgresql state=running enabled=yes
+  tags:
+    - postgres
