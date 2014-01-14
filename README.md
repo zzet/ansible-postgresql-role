@@ -90,4 +90,5 @@ Author Information
 Contributors Information
 ------------------
 
+[Alexander Vagin](https://github.com/PlugIN73)
 [DAUPHANT Julien](https://github.com/jdauphant)
