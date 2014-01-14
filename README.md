@@ -86,3 +86,8 @@ Author Information
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+
+Contributors Information
+------------------
+
+[DAUPHANT Julien](https://github.com/jdauphant)
