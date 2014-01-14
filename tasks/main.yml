@@ -1,5 +1,5 @@
 ---
-- name: Ensure comon packages are installed
+- name: Ensure common packages are installed
   apt: pkg={{ item }} state=installed
   with_items:
     - python-pycurl
@@ -25,7 +25,6 @@
     - postgresql-{{ pg_version }}
     - postgresql-client-{{ pg_version }}
     - postgresql-contrib-{{ pg_version }}
-    - postgresql-server-dev-{{ pg_version }}
     - libpq-dev
     - python-psycopg2
   register: db_setup
@@ -65,5 +64,10 @@
   template: src=master.conf.j2 dest=/etc/postgresql/{{ pg_version }}/main/postgresql.conf owner=postgres group=postgres mode=0644
   sudo: true
   notify: restart postgresql
+  tags:
+    - postgres
+
+- name: ensure postgresql server is running
+  service: name=postgresql state=running enabled=yes
   tags:
     - postgres
