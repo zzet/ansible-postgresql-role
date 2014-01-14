@@ -25,6 +25,7 @@
     - postgresql-{{ pg_version }}
     - postgresql-client-{{ pg_version }}
     - postgresql-contrib-{{ pg_version }}
+    - libpq-dev
     - python-psycopg2
   register: db_setup
   environment: pg_proxy_env
