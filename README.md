@@ -1,14 +1,8 @@
-Role Name
+Postgres [![Build Status](https://travis-ci.org/zzet/ansible-postgresql-role.png?branch=master)](https://travis-ci.org/zzet/ansible-postgresql-role) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
 Role for base setup and configure postgresql server and client with
 trust authentication be default
-
-
-Role ready status
-------------
-
-[![Build Status](https://travis-ci.org/zzet/ansible-postgresql-role.png?branch=master)](https://travis-ci.org/zzet/ansible-postgresql-role)
 
 Requirements
 ------------
@@ -89,9 +83,6 @@ Author Information
 ------------------
 
 [Andrew Kumanyaev](https://github.com/zzet)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
 
 Contributors Information
 ------------------
