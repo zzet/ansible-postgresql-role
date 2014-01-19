@@ -40,6 +40,17 @@ ToDo
 -------
 
  - Extensions
+   - [HSTORE](http://www.postgresql.org/docs/9.2/static/hstore.html)
+   - [POSTGIS](http://postgis.refractions.net/)
+   - [POSTPIC](http://github.com/drotiro/postpic)
+   - [PL/PROXY](http://pgfoundry.org/projects/plproxy/)
+   - [TEXCALLER](http://www.profv.de/texcaller/)
+   - [PGMEMCACHE](http://pgfoundry.org/projects/pgmemcache/)
+   - [PREFIX](http://pgfoundry.org/projects/prefix)
+   - [PGSPHERE](http://pgsphere.projects.postgresql.org/)
+   - [MULTICORN](http://multicorn.org/)
+   - [INTARRAY](http://www.postgresql.org/docs/9.2/static/intarray.html)
+   - [DBLINK](http://www.postgresql.org/docs/9.2/static/dblink.html)
 
 Author Information
 ------------------
