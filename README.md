@@ -4,6 +4,12 @@ Role Name
 Role for base setup and configure postgresql server and client with
 trust authentication be default
 
+
+Role ready status
+------------
+
+[![Build Status](https://travis-ci.org/zzet/ansible-postgresql-role.png?branch=master)](https://travis-ci.org/zzet/ansible-postgresql-role)
+
 Requirements
 ------------
 
