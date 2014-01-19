@@ -39,7 +39,7 @@
   sudo: yes
   sudo_user: postgres
   shell: pg_dropcluster --stop {{ pg_version }} {{ pg_cluster }}
-  when: db_setup.changed and pg_recreate_cluster # only do this if the dbs haven't been created yet
+  when: 'db_setup.changed && {{ pg_recreate_cluster }} == true' # only do this if the dbs haven't been created yet
   tags:
     - postgres
 
