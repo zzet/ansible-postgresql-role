@@ -1,6 +1,11 @@
 ---
 language: python
 python: "2.7"
+env:
+  matrix:
+    - PG_VERSION="9.1"
+    - PG_VERSION="9.2"
+    - PG_VERSION="9.3"
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq python-apt python-pycurl
@@ -9,4 +14,4 @@ install:
 script:
   - echo localhost > inventory
   - ansible-playbook --syntax-check -i inventory role.yml
-  - ansible-playbook -i inventory role.yml --connection=local --sudo -vvvv
+  - ansible-playbook -i inventory role.yml -vvvv --connection=local --sudo --extra-vars="pg_version=$PG_VERSION"
