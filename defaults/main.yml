@@ -467,7 +467,7 @@ pg_cfg_srv_default_text_search_config: 'pg_catalog.english'
 
 # - Other Defaults -
 
-pg_cfg_srv_dynamic_library_path: '$libdir'
+pg_cfg_srv_dynamic_library_path: '"$libdir"'
 pg_cfg_srv_local_preload_libraries: ''
 
 
