@@ -443,7 +443,7 @@ log_autovacuum_min_duration = {{ pg_cfg_srv_log_autovacuum_min_duration }}   # -
                                     # their durations, > 0 logs only
                                     # actions running at logeast this number
                                     # of milliseconds.
-autovacuum_max_workers = {{ pg_cfg_srv_autovacuum_max_workers }} at max number of autovacuum subprocesses
+autovacuum_max_workers = {{ pg_cfg_srv_autovacuum_max_workers }} # at max number of autovacuum subprocesses
                                     # (change requires restart)
 autovacuum_naptime = {{ pg_cfg_srv_autovacuum_naptime }}          # time between autovacuum runs
 autovacuum_naptime_vacuum_threshold = {{ pg_cfg_srv_autovacuum_naptime_vacuum_threshold }} # min number of row updates before
