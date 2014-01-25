@@ -1,6 +1,6 @@
 ---
 # default vars file for pg
-pg_version: '9.2'
+pg_version: 9.2
 pg_encoding: 'UTF-8'
 pg_locale: 'en_US.UTF-8'
 

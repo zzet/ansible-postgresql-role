@@ -87,10 +87,12 @@ ssl = {{ pg_cfg_srv_ssl }}                              # (change requires resta
 ssl_ciphers = '{{ pg_cfg_srv_ssl_ciphers }}' # allowed SSL ciphers
                                         # (change requires restart)
 ssl_renegotiation_limit = {{ pg_cfg_srv_ssl_renegotiation_limit }}        # amount of data between renegotiations
+{% if pg_version >= 9.2 %}
 ssl_cert_file = '{{ pg_cfg_srv_ssl_cert_file }}'  # (changedangeange requires restart)
 ssl_key_file = '{{ pg_cfg_srv_ssl_key_file }}' # (change requires restart)
 ssl_ca_file = '{{ pg_cfg_srv_ssl_ca_file }}'                       # (change requires restart)
 ssl_crl_file = '{{ pg_cfg_srv_ssl_crl_file }}'                      # (change requires restart)
+{% endif %}
 password_encryption = {{ pg_cfg_srv_password_encryption }}
 db_user_namespace = {{ pg_cfg_srv_db_user_namespace }}
 
@@ -133,8 +135,9 @@ max_stack_depth = {{ pg_cfg_srv_max_stack_depth }}                  # min 100kB
 
 # - Disk -
 
-temp_file_limit = {{ pg_cfg_srv_temp_file_limit }}                   # limits per-session temp file       space
-                                        # in kB, or -1 for no limit
+{% if pg_version >= 9.2 %}
+temp_file_limit = {{ pg_cfg_srv_temp_file_limit }}                   # limits per-session temp file space in kB, or -1 for no limit
+{% endif %}
 
 # - Kernel Resource Usage -
 
@@ -238,7 +241,9 @@ enable_bitmapscan = {{ pg_cfg_srv_enable_bitmapscan }}
 enable_hashagg = {{ pg_cfg_srv_enable_hashagg }}
 enable_hashjoin = {{ pg_cfg_srv_enable_hashjoin }}
 enable_indexscan = {{ pg_cfg_srv_enable_indexscan }}
+{% if pg_version >= 9.2 %}
 enable_indexonlyscan = {{ pg_cfg_srv_enable_indexonlyscan }}
+{% endif %}
 enable_material = {{ pg_cfg_srv_enable_material }}
 enable_mergejoin = {{ pg_cfg_srv_enable_mergejoin }}
 enable_nestloop = {{ pg_cfg_srv_enable_nestloop }}
@@ -416,7 +421,9 @@ log_timezone          = '{{ pg_cfg_srv_log_timezone }}'
 
 track_activities = {{ pg_cfg_srv_track_activities }}
 track_counts = {{ pg_cfg_srv_track_counts }}
+{% if pg_version >= 9.2 %}
 track_io_timing = {{ pg_cfg_srv_track_io_timing }}
+{% endif %}
 track_functions = {{ pg_cfg_srv_track_functions }}               # none, pl, all
 track_activity_query_size = {{ pg_cfg_srv_track_activity_query_size }}     # (change requires restart)
 update_process_title = {{ pg_cfg_srv_update_process_title }}
