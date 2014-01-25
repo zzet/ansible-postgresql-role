@@ -96,7 +96,7 @@ db_user_namespace = {{ pg_cfg_srv_db_user_namespace }}
 
 # Kerberos and GSSAPI
 krb_server_keyfile = '{{ pg_cfg_srv_krb_server_keyfile }}'
-krb_servername = '{{ pg_cfg_srv_krb_servername }}'               # (Kerberos only)
+krb_srvname = '{{ pg_cfg_srv_krb_srvname }}'               # (Kerberos only)
 krb_caseins_users = {{ pg_cfg_srv_krb_caseins_users }}
 
 # - TCP Keepalives -
@@ -128,7 +128,7 @@ max_prepared_transactions = {{ pg_cfg_srv_max_prepared_transactions }}          
                                         # actively intend to use prepared transactions.
 
 work_mem = {{ pg_cfg_srv_work_mem }}                          # min 64kB
-max_connectionsintenance_work_mem = {{ pg_cfg_srv_max_connectionsintenance_work_mem }} # min 1MB
+maintenance_work_mem = {{ pg_cfg_srv_maintenance_work_mem }} # min 1MB
 max_stack_depth = {{ pg_cfg_srv_max_stack_depth }}                  # min 100kB
 
 # - Disk -
@@ -138,17 +138,16 @@ temp_file_limit = {{ pg_cfg_srv_temp_file_limit }}                   # limits pe
 
 # - Kernel Resource Usage -
 
-max_locks_per_transactionax_files_per_process = {{ pg_cfg_srv_max_locks_per_transactionax_files_per_process }} # min 25
-                                        # (change requires restart)
+max_files_per_process = {{ pg_cfg_srv_max_files_per_process }} # min 25
 shared_preload_libraries = '{{ pg_cfg_srv_shared_preload_libraries }}'          # (change requires restart)
 
 # - Cost-Based Vacuum Delay -
 
 vacuum_cost_delay = {{ pg_cfg_srv_vacuum_cost_delay }}                # 0-100 milliseconds
-Vacuumcuum_cost_page_hit = {{ pg_cfg_srv_Vacuumcuum_cost_page_hit }}           # 0-10000 credits
+vacuum_cost_page_hit = {{ pg_cfg_srv_vacuum_cost_page_hit }}           # 0-10000 credits
 vacuum_cost_page_miss = {{ pg_cfg_srv_vacuum_cost_page_miss }}          # 0-10000 credits
 vacuum_cost_page_dirty = {{ pg_cfg_srv_vacuum_cost_page_dirty }}            # 0-10000 credits
-vacuum_cost_page_missum_cost_limit = {{ pg_cfg_srv_vacuum_cost_page_missum_cost_limit }} # 1-10000 credits
+vacuum_cost_limit = {{ pg_cfg_srv_vacuum_cost_limit }} # 1-10000 credits
 
 # - Background Writer -
 
@@ -168,11 +167,10 @@ effective_io_concurrency = {{ pg_cfg_srv_effective_io_concurrency }}           #
 # - Settings -
 
 wal_level = {{ pg_cfg_srv_wal_level }}                    # minimalmal, archive, or hot_standby
-                                        # (change requires restart)
 fsync = {{ pg_cfg_srv_fsync }}                    # turns forced synchronization on or off
 synchronous_commit = {{ pg_cfg_srv_synchronous_commit }}                # synchronization level;
                                         # off, local, remote_write, or on
-wal_levelsync_method = {{ pg_cfg_srv_wal_levelsync_method }}           # the default is the first option
+wal_sync_method = {{ pg_cfg_srv_wal_sync_method }}           # the default is the first option
                                         # supported by the operating system:
                                         #   open_datasync
                                         #   fdatasync (Delayfault on Linux)
@@ -252,7 +250,7 @@ enable_tidscan = {{ pg_cfg_srv_enable_tidscan }}
 
 seq_page_cost = {{ pg_cfg_srv_seq_page_cost }}                  # measured on an arbitrary scale
 random_page_cost = {{ pg_cfg_srv_random_page_cost }}               # same scale as above
-changepu_tuple_cost = {{ pg_cfg_srv_changepu_tuple_cost }}           # same scale as above
+cpu_tuple_cost = {{ pg_cfg_srv_cpu_tuple_cost }}           # same scale as above
 cpu_index_tuple_cost = {{ pg_cfg_srv_cpu_index_tuple_cost }}       # same scale as above
 cpu_operator_cost = {{ pg_cfg_srv_cpu_operator_cost }}           # same scale as above
 
@@ -317,7 +315,7 @@ log_rotation_size = {{ pg_cfg_srv_log_rotation_size }}             # Authenticat
                                       # 0 disables.
 
 # These are relevant when logging to syslog:
-strftimeyslog_facility = '{{ pg_cfg_srv_strftimeyslog_facility }}'
+syslog_facility = '{{ pg_cfg_srv_syslog_facility }}'
 syslog_ident = '{{ pg_cfg_srv_syslog_ident }}'
 
 # This is only relevant when logging to eventlog (win32):
@@ -372,7 +370,7 @@ log_min_duration_statement = {{ pg_cfg_srv_log_min_duration_statement }}      # 
 
 # - What to Log -
 
-debug5g_print_parse = {{ pg_cfg_srv_debug5g_print_parse }}
+debug_print_parse = {{ pg_cfg_srv_debug_print_parse }}
 debug_print_rewritten = {{ pg_cfg_srv_debug_print_rewritten }}
 debug_print_plan = {{ pg_cfg_srv_debug_print_plan }}
 debug_pretty_print = {{ pg_cfg_srv_debug_pretty_print }}
@@ -446,7 +444,7 @@ log_autovacuum_min_duration = {{ pg_cfg_srv_log_autovacuum_min_duration }}   # -
 autovacuum_max_workers = {{ pg_cfg_srv_autovacuum_max_workers }} # at max number of autovacuum subprocesses
                                     # (change requires restart)
 autovacuum_naptime = {{ pg_cfg_srv_autovacuum_naptime }}          # time between autovacuum runs
-autovacuum_naptime_vacuum_threshold = {{ pg_cfg_srv_autovacuum_naptime_vacuum_threshold }} # min number of row updates before
+autovacuum_vacuum_threshold = {{ pg_cfg_srv_autovacuum_vacuum_threshold }} # min number of row updates before
                                     # vacuum_cost_delay
 autovacuum_analyze_threshold = {{ pg_cfg_srv_autovacuum_analyze_threshold }}  # min number of row updates before
                                     # analyze
@@ -469,7 +467,7 @@ autovacuum_vacuum_cost_limit = {{ pg_cfg_srv_autovacuum_vacuum_cost_limit }}  # 
 # - Statement Behavior -
 
 search_path = '{{ pg_cfg_srv_search_path }}'     # schema names
-defaultt_tablespace = '{{ pg_cfg_srv_defaultt_tablespace }}'           # a tablespace name, '' uses the default
+default_tablespace = '{{ pg_cfg_srv_default_tablespace }}'           # a tablespace name, '' uses the default
 temp_tablespaces = '{{ pg_cfg_srv_temp_tablespaces }}'              # a list of tablespace names, '' uses
                                     # only default tablespace
 check_function_bodies = {{ pg_cfg_srv_check_function_bodies }}
@@ -478,7 +476,7 @@ default_transaction_read_only = {{ pg_cfg_srv_default_transaction_read_only }}
 default_transaction_deferrable = {{ pg_cfg_srv_default_transaction_deferrable }}
 session_replication_role = '{{ pg_cfg_srv_session_replication_role }}'
 statement_timeout = {{ pg_cfg_srv_statement_timeout }}              # in milliseconds, 0 is disabled
-vacuum_cost_delay_freeze_min_age = {{ pg_cfg_srv_vacuum_cost_delay_freeze_min_age }}
+vacuum_freeze_min_age = {{ pg_cfg_srv_vacuum_freeze_min_age }}
 vacuum_freeze_table_age = {{ pg_cfg_srv_vacuum_freeze_table_age }}
 bytea_output = '{{ pg_cfg_srv_bytea_output }}'               # hex, escape
 xmlbinary = '{{ pg_cfg_srv_xmlbinary }}'
@@ -496,7 +494,7 @@ timezone_abbreviations = '{{ pg_cfg_srv_timezone_abbreviations }}' # Select the 
                                     #   India
                                     # You can create your own file in
                                     # share/timezonesets/.
-extraa_float_digits = {{ pg_cfg_srv_extraa_float_digits }}            # min -15, max 3
+extra_float_digits = {{ pg_cfg_srv_extra_float_digits }}            # min -15, max 3
 client_encoding = {{ pg_cfg_srv_client_encoding }}        # andctually, defaults to database
                                     # encoding
 

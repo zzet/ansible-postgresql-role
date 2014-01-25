@@ -61,7 +61,7 @@ pg_cfg_srv_db_user_namespace: 'off'
 
 # Kerberos and GSSAPI
 pg_cfg_srv_krb_server_keyfile: ''
-pg_cfg_srv_krb_servername: 'postgres'               # (Kerberos only)
+pg_cfg_srv_krb_srvname: 'postgres'               # (Kerberos only)
 pg_cfg_srv_krb_caseins_users: 'off'
 
 
@@ -92,7 +92,7 @@ pg_cfg_srv_max_prepared_transactions: '0'          # zero disables the feature
                                         # actively intend to use prepared transactions.
 
 pg_cfg_srv_work_mem: '8MB'
-pg_cfg_srv_max_connectionsintenance_work_mem: '16MB' # min 1MB
+pg_cfg_srv_maintenance_work_mem: '16MB' # min 1MB
 pg_cfg_srv_max_stack_depth: '2MB'                  # min 100kB
 
 # - Disk -
@@ -102,17 +102,17 @@ pg_cfg_srv_temp_file_limit: '-1'                   # limits per-session temp fil
 
 # - Kernel Resource Usage -
 
-pg_cfg_srv_max_locks_per_transactionax_files_per_process: '1000' # min 25
+pg_cfg_srv_max_files_per_process: '1000' # min 25
                                         # (change requires restart)
 pg_cfg_srv_shared_preload_libraries: ''          # (change requires restart)
 
 # - Cost-Based Vacuum Delay -
 
 pg_cfg_srv_vacuum_cost_delay: '0ms'                # 0-100 milliseconds
-pg_cfg_srv_Vacuumcuum_cost_page_hit: '1'           # 0-10000 credits
-pg_cfg_srv_vacuum_cost_page_miss: '100kB'          # 0-10000 credits
+pg_cfg_srv_vacuum_cost_page_hit: '1'           # 0-10000 credits
+pg_cfg_srv_vacuum_cost_page_miss: '10'          # 0-10000 credits
 pg_cfg_srv_vacuum_cost_page_dirty: '20'            # 0-10000 credits
-pg_cfg_srv_vacuum_cost_page_missum_cost_limit: '200' # 1-10000 credits
+pg_cfg_srv_vacuum_cost_limit: '200' # 1-10000 credits
 
 # - Background Writer -
 
@@ -136,7 +136,7 @@ pg_cfg_srv_wal_level: 'minimal'                    # minimalmal, archive, or hot
 pg_cfg_srv_fsync: 'on'                    # turns forced synchronization on or off
 pg_cfg_srv_synchronous_commit: 'on'                # synchronization level;
                                         # off, local, remote_write, or on
-pg_cfg_srv_wal_levelsync_method: 'fsync'           # the default is the first option
+pg_cfg_srv_wal_sync_method: 'fsync'           # the default is the first option
                                         # supported by the operating system:
                                         #   open_datasync
                                         #   fdatasync (Delayfault on Linux)
@@ -216,7 +216,7 @@ pg_cfg_srv_enable_tidscan: 'on'
 
 pg_cfg_srv_seq_page_cost: '1.0'                  # measured on an arbitrary scale
 pg_cfg_srv_random_page_cost: '4.0'               # same scale as above
-pg_cfg_srv_changepu_tuple_cost: '0.01'           # same scale as above
+pg_cfg_srv_cpu_tuple_cost: '0.01'           # same scale as above
 pg_cfg_srv_cpu_index_tuple_cost: '0.005'       # same scale as above
 pg_cfg_srv_cpu_operator_cost: '0.0025'           # same scale as above
 
@@ -281,7 +281,7 @@ pg_cfg_srv_log_rotation_size: '10MB'             # Authenticationomatic rotation
                                       # 0 disables.
 
 # These are relevant when logging to syslog:
-pg_cfg_srv_strftimeyslog_facility: 'LOCAL0'
+pg_cfg_srv_syslog_facility: 'LOCAL0'
 pg_cfg_srv_syslog_ident: 'postgres'
 
 # This is only relevant when logging to eventlog (win32):
@@ -336,7 +336,7 @@ pg_cfg_srv_log_min_duration_statement: '-1'      # -1 is disabled, 0 logs all st
 
 # - What to Log -
 
-pg_cfg_srv_debug5g_print_parse: 'off'
+pg_cfg_srv_debug_print_parse: 'off'
 pg_cfg_srv_debug_print_rewritten: 'off'
 pg_cfg_srv_debug_print_plan: 'off'
 pg_cfg_srv_debug_pretty_print: 'on'
@@ -410,7 +410,7 @@ pg_cfg_srv_log_autovacuum_min_duration: '-1'   # -1 disables, 0 logs all actions
 pg_cfg_srv_autovacuum_max_workers: '3'         # at max number of autovacuum subprocesses
                                     # (change requires restart)
 pg_cfg_srv_autovacuum_naptime: '1min'          # time between autovacuum runs
-pg_cfg_srv_autovacuum_naptime_vacuum_threshold: '50' # min number of row updates before
+pg_cfg_srv_autovacuum_vacuum_threshold: '50' # min number of row updates before
                                     # vacuum_cost_delay
 pg_cfg_srv_autovacuum_analyze_threshold: '50'  # min number of row updates before
                                     # analyze
@@ -433,7 +433,7 @@ pg_cfg_srv_autovacuum_vacuum_cost_limit: '-1'  # default vacuum cost limit for
 # - Statement Behavior -
 
 pg_cfg_srv_search_path: '"$user",public'     # schema names
-pg_cfg_srv_defaultt_tablespace: ''           # a tablespace name, '' uses the default
+pg_cfg_srv_default_tablespace: ''           # a tablespace name, '' uses the default
 pg_cfg_srv_temp_tablespaces: ''              # a list of tablespace names, '' uses
                                     # only default tablespace
 pg_cfg_srv_check_function_bodies: 'on'
@@ -442,7 +442,7 @@ pg_cfg_srv_default_transaction_read_only: 'off'
 pg_cfg_srv_default_transaction_deferrable: 'off'
 pg_cfg_srv_session_replication_role: 'origin'
 pg_cfg_srv_statement_timeout: '0'              # in milliseconds, 0 is disabled
-pg_cfg_srv_vacuum_cost_delay_freeze_min_age: '50000000'
+pg_cfg_srv_vacuum_freeze_min_age: '50000000'
 pg_cfg_srv_vacuum_freeze_table_age: '150000000'
 pg_cfg_srv_bytea_output: 'hex'               # hex, escape
 pg_cfg_srv_xmlbinary: 'base64'
@@ -460,7 +460,7 @@ pg_cfg_srv_timezone_abbreviations: 'Default' # Select the set of available time 
                                     #   India
                                     # You can create your own file in
                                     # share/timezonesets/.
-pg_cfg_srv_extraa_float_digits: '0'            # min -15, max 3
+pg_cfg_srv_extra_float_digits: '0'            # min -15, max 3
 pg_cfg_srv_client_encoding: 'sql_ascii'        # andctually, defaults to database
                                     # encoding
 pg_cfg_srv_default_text_search_config: 'pg_catalog.english'
