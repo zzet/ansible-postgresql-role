@@ -50,6 +50,8 @@
   notify: restart postgresql
   tags:
     - postgres
+    
+- meta: flush_handlers
 
 - name: ensure postgresql server is running
   service: name=postgresql state=running enabled=yes
