@@ -10,6 +10,13 @@ pg_defualt_auth_method: 'trust'
 pg_cluster: 'main'
 pg_cluster_recreate: false
 
+# Extensions setup
+pg_dev_headers: true
+pg_contrib: true
+
+pg_postgis: false
+pg_postgis_version: '2.1'
+
 pg_repo: 'postgresql.org' # unset to use distribution repo
 
 # pg_hba.conf

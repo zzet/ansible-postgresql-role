@@ -24,8 +24,6 @@
   with_items:
     - postgresql-{{ pg_version }}
     - postgresql-client-{{ pg_version }}
-    - postgresql-contrib-{{ pg_version }}
-    - libpq-dev
     - python-psycopg2
   register: db_setup
   environment: pg_proxy_env
@@ -50,10 +48,15 @@
   notify: restart postgresql
   tags:
     - postgres
-    
+
 - meta: flush_handlers
 
 - name: ensure postgresql server is running
   service: name=postgresql state=running enabled=yes
   tags:
     - postgres
+
+- include: extensions_common.yml
+
+- include: postgis.yml
+  when: pg_postgis

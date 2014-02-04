@@ -20,6 +20,10 @@ _This role under active development_.
   - Ubuntu 12.04 (main test OS + Travis)
   - Debian (tested)
 
+#### Extensions
+
+   - [POSTGIS](http://postgis.refractions.net/)
+
 Requirements
 ------------
 
@@ -45,7 +49,6 @@ ToDo
 
  - Extensions
    - [HSTORE](http://www.postgresql.org/docs/9.2/static/hstore.html)
-   - [POSTGIS](http://postgis.refractions.net/)
    - [POSTPIC](http://github.com/drotiro/postpic)
    - [PL/PROXY](http://pgfoundry.org/projects/plproxy/)
    - [TEXCALLER](http://www.profv.de/texcaller/)
