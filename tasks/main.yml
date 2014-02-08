@@ -53,6 +53,7 @@
 
 - name: ensure postgresql server is started
   service: name=postgresql state=started enabled=yes arguments={{ pg_version }} pattern="/{{ pg_version }}/.*/postgres"
+  sudo: true
   tags:
     - postgres
 
