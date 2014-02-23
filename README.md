@@ -1,4 +1,4 @@
-Postgres [![Build Status](https://travis-ci.org/zzet/ansible-postgresql-role.png?branch=master)](https://travis-ci.org/zzet/ansible-postgresql-role) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+Postgres [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/zzet/ansible-postgresql-role/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
 A [role](https://galaxy.ansibleworks.com/list#/roles/101) for base setup and configuring [PostgreSQL](http://www.postgresql.org/) server with client on unix based hosts using [Ansible](http://www.ansibleworks.com/).
