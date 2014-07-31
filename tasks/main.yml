@@ -7,13 +7,9 @@
   tags:
     - postgres
 
-- name: Include Ubuntu tasks
-  include: ubuntu.yml
-  when: not "{{ ansible_distribution }}" != "Ubuntu"
-
 - name: Include Debian tasks
   include: debian.yml
-  when: not "{{ ansible_distribution }}" != "Debian"
+  when: ansible_os_family == "Debian"
 
 - name: Ensure apt cache is up to date
   apt: update_cache=yes
@@ -50,7 +46,7 @@
   notify: restart postgresql
   tags:
     - postgres
-    
+
 - meta: flush_handlers
 
 - name: ensure postgresql server is running
