@@ -223,7 +223,7 @@ max_wal_senders = {{ pg_cfg_srv_max_wal_senders }}                  # max number
                                       # (change requires restart)
 wal_keep_segments = {{ pg_cfg_srv_wal_keep_segments }}                # in logfile segments, 16MB each; 0 disables
 {% if pg_version == 9.3 -%}
-wal_sender_timeout = { pg_cfg_srv_replication_timeout }}
+wal_sender_timeout = {{ pg_cfg_srv_replication_timeout }}
 {% else %}
 replication_timeout = {{ pg_cfg_srv_replication_timeout }}            # in millisecondseconds; 0 disables
 {% endif -%}
