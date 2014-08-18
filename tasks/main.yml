@@ -45,6 +45,8 @@
   tags:
     - postgres
 
+- include: extensions_common.yml
+
 - meta: flush_handlers
 
 - name: ensure postgresql server is started
@@ -52,8 +54,6 @@
   sudo: true
   tags:
     - postgres
-
-- include: extensions_common.yml
 
 - include: postgis.yml
   when: pg_postgis
