@@ -12,6 +12,8 @@ before_install:
  - sudo apt-get remove postgresql postgresql-9.{1,2,3} -qq
  - sudo pkill -f 'postgres:'
  - sudo rm -rf /var/run/postgresql
+ - sudo ps aux | grep postgres
+ - sudo netstat -tlpen
 install:
   - pip install ansible
 script:
