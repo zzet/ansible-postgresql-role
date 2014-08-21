@@ -69,7 +69,7 @@ max_connections = {{ pg_cfg_srv_max_connections }}                   # (change r
                                         # Note:  IPv6 increasing max_connections costs ~400 bytes of shared memory per
                                         # connection slot, plus lock space (see max_locks_per_transaction).
 superuser_reserved_connections = {{ pg_cfg_srv_superuser_reserved_connections }}      #  (change requires restart)
-{% if pg_version == 9.3 -%}
+{% if pg_version | version_compare('9.3', '>=') -%}
 unix_socket_directories = '{{ pg_cfg_srv_unix_socket_directory }}' # (change requires restart)
 {% else %}
 unix_socket_directory = '{{ pg_cfg_srv_unix_socket_directory }}' # (change requires restart)
@@ -91,7 +91,7 @@ ssl = {{ pg_cfg_srv_ssl }}                              # (change requires resta
 ssl_ciphers = '{{ pg_cfg_srv_ssl_ciphers }}' # allowed SSL ciphers
                                         # (change requires restart)
 ssl_renegotiation_limit = {{ pg_cfg_srv_ssl_renegotiation_limit }}        # amount of data between renegotiations
-{% if pg_version >= 9.2 %}
+{% if pg_version | version_compare('9.2', '>=') -%}
 ssl_cert_file = '{{ pg_cfg_srv_ssl_cert_file }}'  # (changedangeange requires restart)
 ssl_key_file = '{{ pg_cfg_srv_ssl_key_file }}' # (change requires restart)
 ssl_ca_file = '{{ pg_cfg_srv_ssl_ca_file }}'                       # (change requires restart)
@@ -139,7 +139,7 @@ max_stack_depth = {{ pg_cfg_srv_max_stack_depth }}                  # min 100kB
 
 # - Disk -
 
-{% if pg_version >= 9.2 %}
+{% if pg_version | version_compare('9.2', '>=') -%}
 temp_file_limit = {{ pg_cfg_srv_temp_file_limit }}                   # limits per-session temp file space in kB, or -1 for no limit
 {% endif %}
 
@@ -222,7 +222,7 @@ archive_timeout = {{ pg_cfg_srv_archive_timeout }}                    # force a 
 max_wal_senders = {{ pg_cfg_srv_max_wal_senders }}                  # max number of walsender processes
                                       # (change requires restart)
 wal_keep_segments = {{ pg_cfg_srv_wal_keep_segments }}                # in logfile segments, 16MB each; 0 disables
-{% if pg_version == 9.3 -%}
+{% if pg_version | version_compare('9.3', '>=') -%}
 wal_sender_timeout = {{ pg_cfg_srv_replication_timeout }}
 {% else %}
 replication_timeout = {{ pg_cfg_srv_replication_timeout }}            # in millisecondseconds; 0 disables
@@ -238,7 +238,7 @@ synchronous_standby_names = '{{ pg_cfg_srv_synchronous_standby_names }}'       #
 vacuum_defer_cleanup_age = {{ pg_cfg_srv_vacuum_defer_cleanup_age }}         # number of xacts  by which cleanup is delayed
 
 # - Standby Servers -
-{% if pg_version == 9.3 -%}
+{% if pg_version | version_compare('9.3', '>=') -%}
 wal_receiver_timeout = {{ pg_cfg_srv_replication_receiver_timeout }}
 {% endif -%}
 
@@ -252,7 +252,7 @@ enable_bitmapscan = {{ pg_cfg_srv_enable_bitmapscan }}
 enable_hashagg = {{ pg_cfg_srv_enable_hashagg }}
 enable_hashjoin = {{ pg_cfg_srv_enable_hashjoin }}
 enable_indexscan = {{ pg_cfg_srv_enable_indexscan }}
-{% if pg_version >= 9.2 %}
+{% if pg_version | version_compare('9.2', '>=') -%}
 enable_indexonlyscan = {{ pg_cfg_srv_enable_indexonlyscan }}
 {% endif %}
 enable_material = {{ pg_cfg_srv_enable_material }}
@@ -432,7 +432,7 @@ log_timezone          = '{{ pg_cfg_srv_log_timezone }}'
 
 track_activities = {{ pg_cfg_srv_track_activities }}
 track_counts = {{ pg_cfg_srv_track_counts }}
-{% if pg_version >= 9.2 %}
+{% if pg_version | version_compare('9.2', '>=') -%}
 track_io_timing = {{ pg_cfg_srv_track_io_timing }}
 {% endif %}
 track_functions = {{ pg_cfg_srv_track_functions }}               # none, pl, all
