@@ -44,6 +44,26 @@
   notify: restart postgresql
   tags: postgres_config
 
+- name: Ensure ssl cert permissions
+  file:
+    path="{{ pg_cfg_srv_ssl_cert_file }}"
+    owner="{{ pg_admin_user }}"
+    group="{{ pg_admin_user }}"
+    mode="0644"
+  sudo: true
+  when: pg_cfg_srv_ssl_cert_file is defined
+  tags: postgres_config
+
+- name: Ensure ssl key permissions
+  file:
+    path="{{ pg_cfg_srv_ssl_key_file }}"
+    owner="{{ pg_admin_user }}"
+    group="{{ pg_admin_user }}"
+    mode="0644"
+  sudo: true
+  when: pg_cfg_srv_ssl_key_file
+  tags: postgres_config
+
 - include: extensions_common.yml
   tags: postgres_extensions
 
