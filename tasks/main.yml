@@ -61,7 +61,7 @@
     group="{{ pg_admin_user }}"
     mode="0600"
   sudo: true
-  when: pg_cfg_srv_ssl_key_file
+  when: pg_cfg_srv_ssl_key_file is defined
   tags: postgres_config
 
 - include: extensions_common.yml
