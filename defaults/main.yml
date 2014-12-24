@@ -66,12 +66,6 @@ pg_cfg_srv_ssl_crl_file: ''
 pg_cfg_srv_password_encryption: 'on'
 pg_cfg_srv_db_user_namespace: 'off'
 
-# Kerberos and GSSAPI
-pg_cfg_srv_krb_server_keyfile: ''
-pg_cfg_srv_krb_srvname: 'postgres'               # (Kerberos only)
-pg_cfg_srv_krb_caseins_users: 'off'
-
-
 # -------------------------------
 # - TCP Keepalives              -
 # - see "man 7 tcp" for details -
