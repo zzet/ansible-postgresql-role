@@ -101,9 +101,16 @@ password_encryption = {{ pg_cfg_srv_password_encryption }}
 db_user_namespace = {{ pg_cfg_srv_db_user_namespace }}
 
 # Kerberos and GSSAPI
+
+{% if pg_cfg_srv_krb_server_keyfile is defined %}
 krb_server_keyfile = '{{ pg_cfg_srv_krb_server_keyfile }}'
+{% endif %}
+{% if pg_cfg_srv_krb_srvname is defined %}
 krb_srvname = '{{ pg_cfg_srv_krb_srvname }}'               # (Kerberos only)
+{% endif %}
+{% if pg_cfg_srv_krb_caseins_users is defined %}
 krb_caseins_users = {{ pg_cfg_srv_krb_caseins_users }}
+{% endif %}
 
 # - TCP Keepalives -
 # see "man 7 tcp" for details
