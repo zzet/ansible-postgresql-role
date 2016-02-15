@@ -23,7 +23,7 @@
     - postgresql-client-{{ pg_version }}
     - python-psycopg2
   register: db_setup
-  environment: pg_proxy_env
+  environment: '{{ pg_proxy_env }}'
   sudo: true
   tags: postgres_packages
 
