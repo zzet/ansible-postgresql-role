@@ -9,9 +9,11 @@ _This role under active development_.
 
 #### Supported PostgreSQL versions:
   
-  - PostgreSQL 9.1 (experimental * )
+  - PostgreSQL 9.1 
   - PostgreSQL 9.2
-  - PostgreSQL 9.3 (experimental * )
+  - PostgreSQL 9.3 
+  - PostgreSQL 9.4
+  - PostgreSQL 9.5
 
 * - Please, give me feedback if you have some problems on github issue tracker
 
