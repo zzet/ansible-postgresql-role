@@ -201,7 +201,7 @@ commit_siblings = {{ pg_cfg_srv_commit_siblings }}                    # range 1-
 
 # - Checkpoints -
 
-{% if !(pg_version | version_compare('9.5', '>=')) -%}
+{% if pg_version | version_compare('9.5', '<') -%}
 checkpoint_segments = {{ pg_cfg_srv_checkpoint_segments }}                # in logfile segments, min 1, 16MB each
 {% endif -%}
 checkpoint_timeout = {{ pg_cfg_srv_checkpoint_timeout }}              # range 30s-1h
