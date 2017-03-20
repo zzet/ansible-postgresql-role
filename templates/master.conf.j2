@@ -90,7 +90,9 @@ authentication_timeout = {{ pg_cfg_srv_authentication_timeout }}          # 1s-6
 ssl = {{ pg_cfg_srv_ssl }}                              # (change requires restart)
 ssl_ciphers = '{{ pg_cfg_srv_ssl_ciphers }}' # allowed SSL ciphers
                                         # (change requires restart)
+{% if pg_version | version_compare('9.5', '<') -%}
 ssl_renegotiation_limit = {{ pg_cfg_srv_ssl_renegotiation_limit }}        # amount of data between renegotiations
+{% endif %}
 {% if pg_version | version_compare('9.2', '>=') -%}
 ssl_cert_file = '{{ pg_cfg_srv_ssl_cert_file }}'  # (changedangeange requires restart)
 ssl_key_file = '{{ pg_cfg_srv_ssl_key_file }}' # (change requires restart)
